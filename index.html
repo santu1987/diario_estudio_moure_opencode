@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diario de Estudio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="contenedor">
+    <header class="cabecera">
+      <h1>Diario de Estudio</h1>
+      <p>Registra tus sesiones y mantén viva tu racha.</p>
+    </header>
+
+    <section class="racha" aria-labelledby="racha-etiqueta">
+      <p class="racha__etiqueta" id="racha-etiqueta">Racha actual</p>
+      <p class="racha__valor">
+        <span class="racha__fuego" aria-hidden="true">🔥</span>
+        <span class="racha__numero" id="racha-numero">0</span>
+      </p>
+      <p class="racha__texto" id="racha-texto">Empieza hoy tu racha</p>
+    </section>
+
+    <section class="tarjeta" aria-labelledby="titulo-formulario">
+      <h2 id="titulo-formulario">Nueva sesión</h2>
+
+      <form id="formulario" novalidate>
+        <div class="campos">
+          <div class="campo">
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" name="fecha" required>
+          </div>
+
+          <div class="campo">
+            <label for="minutos">Minutos</label>
+            <input
+              type="number"
+              id="minutos"
+              name="minutos"
+              min="0"
+              step="any"
+              inputmode="decimal"
+              placeholder="Ej. 45"
+              required
+            >
+          </div>
+
+          <div class="campo campo--ancho">
+            <label for="tema">Tema</label>
+            <input
+              type="text"
+              id="tema"
+              name="tema"
+              placeholder="Ej. Álgebra"
+              required
+            >
+          </div>
+        </div>
+
+        <p class="error" id="error" role="alert" hidden></p>
+
+        <button type="submit" class="boton">Guardar sesión</button>
+      </form>
+    </section>
+
+    <section class="tarjeta" aria-labelledby="titulo-sesiones">
+      <h2 id="titulo-sesiones">Sesiones</h2>
+      <ul class="lista" id="lista-sesiones"></ul>
+      <p class="vacio" id="lista-vacia">Todavía no has registrado ninguna sesión.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
