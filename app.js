@@ -9,6 +9,9 @@ const campoMinutos = document.getElementById("minutos");
 const mensajeError = document.getElementById("error");
 const rachaNumero = document.getElementById("racha-numero");
 const rachaTexto = document.getElementById("racha-texto");
+const minutosSemana = document.getElementById("minutos-semana");
+const diasMes = document.getElementById("dias-mes");
+const unidadDiasMes = document.getElementById("unidad-dias-mes");
 const listaSesiones = document.getElementById("lista-sesiones");
 const listaVacia = document.getElementById("lista-vacia");
 
@@ -44,6 +47,8 @@ function guardarSesion(evento) {
 
 function mostrarTodo() {
   mostrarRacha();
+  mostrarMinutosSemana();
+  mostrarDiasMes();
   mostrarSesiones();
 }
 
@@ -86,6 +91,52 @@ function calcularRacha() {
   }
 
   return racha;
+}
+
+function mostrarMinutosSemana() {
+  minutosSemana.textContent = formatearMinutos(calcularMinutosSemana());
+}
+
+function calcularMinutosSemana() {
+  const hoy = new Date();
+  const claveLunes = fechaParaInput(inicioDeSemana(hoy));
+  const claveHoy = fechaParaInput(hoy);
+
+  return sesiones
+    .filter((sesion) => sesion.date >= claveLunes && sesion.date <= claveHoy)
+    .reduce((total, sesion) => {
+      const minutos = Number(sesion.minutes);
+
+      return Number.isFinite(minutos) ? total + minutos : total;
+    }, 0);
+}
+
+function mostrarDiasMes() {
+  const total = calcularDiasMes();
+
+  diasMes.textContent = total;
+  unidadDiasMes.textContent = total === 1 ? "día" : "días";
+}
+
+function calcularDiasMes() {
+  const hoy = new Date();
+  const claveInicioMes = fechaParaInput(new Date(hoy.getFullYear(), hoy.getMonth(), 1));
+  const claveHoy = fechaParaInput(hoy);
+
+  // El Set hace que varias sesiones del mismo día cuenten como un solo día.
+  return new Set(
+    sesiones
+      .filter((sesion) => sesion.date >= claveInicioMes && sesion.date <= claveHoy)
+      .map((sesion) => sesion.date)
+  ).size;
+}
+
+// Devuelve el lunes de la semana de la fecha indicada.
+function inicioDeSemana(fecha) {
+  const dia = fecha.getDay(); // 0 = domingo, 1 = lunes...
+  const diasDesdeLunes = (dia + 6) % 7;
+
+  return new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate() - diasDesdeLunes);
 }
 
 function mostrarSesiones() {

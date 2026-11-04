@@ -3,24 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diario de Estudio</title>
+  <title>Diario de estudio</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <main class="contenedor">
     <header class="cabecera">
-      <h1>Diario de Estudio</h1>
-      <p>Registra tus sesiones y mantén viva tu racha.</p>
+      <h1>Diario de estudio</h1>
+      <p>Apunta cada sesión y sigue tu racha día a día.</p>
     </header>
 
     <section class="racha" aria-labelledby="racha-etiqueta">
       <p class="racha__etiqueta" id="racha-etiqueta">Racha actual</p>
-      <p class="racha__valor">
-        <span class="racha__fuego" aria-hidden="true">🔥</span>
+      <div class="racha__valor">
         <span class="racha__numero" id="racha-numero">0</span>
-      </p>
-      <p class="racha__texto" id="racha-texto">Empieza hoy tu racha</p>
+        <span class="racha__texto" id="racha-texto">Empieza hoy tu racha</span>
+      </div>
     </section>
+
+    <div class="resumen">
+      <section class="dato" aria-labelledby="semana-etiqueta">
+        <p class="dato__etiqueta" id="semana-etiqueta">Esta semana</p>
+        <p class="dato__valor"><span id="minutos-semana">0</span> min</p>
+        <p class="dato__texto">minutos estudiados</p>
+      </section>
+
+      <section class="dato" aria-labelledby="mes-etiqueta">
+        <p class="dato__etiqueta" id="mes-etiqueta">Este mes</p>
+        <p class="dato__valor">
+          <span id="dias-mes">0</span> <span id="unidad-dias-mes">días</span>
+        </p>
+        <p class="dato__texto">días estudiados</p>
+      </section>
+    </div>
 
     <section class="tarjeta" aria-labelledby="titulo-formulario">
       <h2 id="titulo-formulario">Nueva sesión</h2>
@@ -67,7 +82,7 @@
     <section class="tarjeta" aria-labelledby="titulo-sesiones">
       <h2 id="titulo-sesiones">Sesiones</h2>
       <ul class="lista" id="lista-sesiones"></ul>
-      <p class="vacio" id="lista-vacia">Todavía no has registrado ninguna sesión.</p>
+      <p class="vacio" id="lista-vacia">Aún no hay sesiones. Apunta la primera arriba.</p>
     </section>
   </main>
 

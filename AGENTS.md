@@ -19,10 +19,16 @@ Web estática para registrar sesiones de estudio y calcular la racha. Proyecto d
 - Reutiliza `fechaParaInput()` para generar claves `AAAA-MM-DD` y `formatearFecha()` para mostrarlas.
 - Un día cuenta con al menos una sesión. La racha son días consecutivos que terminan hoy; si hoy no hay sesión pero ayer sí, sigue viva y se cuenta desde ayer.
 - Varias sesiones del mismo día cuentan como un día. Las fechas futuras no suman.
+- La semana empieza en lunes y termina en domingo, en fecha local. Para comparar fechas usa claves `AAAA-MM-DD` generadas con `fechaParaInput()`; nunca `toISOString()` ni `new Date("AAAA-MM-DD")`.
+- El total semanal suma las sesiones desde el lunes hasta hoy. Las fechas futuras no cuentan.
+- El mes es natural, del día 1 al último del mes, en fecha local. El contador de días usa un `Set` de claves `AAAA-MM-DD` para que varias sesiones del mismo día cuenten una vez.
+- El contador mensual solo suma hasta hoy; las fechas futuras no cuentan.
 
 ## Verificación
-- No hay lint ni tests automáticos: abre `index.html` con doble clic y prueba el flujo.
+- No hay tests automáticos. Después de cada cambio, verifica con el MCP de Chrome DevTools: abre `index.html`, prueba la funcionalidad, revisa la consola y comprueba la vista móvil. 
 - Casos mínimos: guardar, recargar (persistencia), racha con hoy/ayer, racha viva sin sesión hoy y racha rota.
+- Total semanal: sesiones del lunes, de hoy y del domingo; una sesión de la semana anterior; cambio de mes/año; varias sesiones el mismo día; total a 0.
+- Días del mes: sin sesiones, una sesión, varias el mismo día, día 1, fecha futura, mes anterior, cambio de mes/año y singular/plural.
 - Para empezar de cero: DevTools → Application → Local Storage → borrar `diario-estudio-sesiones`.
 
 ## Memoria
