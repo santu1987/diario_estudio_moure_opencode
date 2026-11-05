@@ -37,6 +37,67 @@
       </section>
     </div>
 
+    <section class="mapa" id="mapa-calor" aria-labelledby="mapa-titulo">
+      <h2 id="mapa-titulo">Últimas 12 semanas</h2>
+      <p class="mapa__resumen" id="mapa-resumen" aria-live="polite">0 de 84 días con sesiones · 0 min</p>
+      <p class="mapa__vacio" id="mapa-vacio" hidden>
+        Aún no hay sesiones en estas 12 semanas. Registra la primera para empezar a llenar el mapa.
+      </p>
+
+      <div class="mapa__marco">
+        <div class="mapa__meses" id="mapa-meses" aria-hidden="true"></div>
+
+        <div class="mapa__dias" aria-hidden="true">
+          <span>L</span>
+          <span>M</span>
+          <span>X</span>
+          <span>J</span>
+          <span>V</span>
+          <span>S</span>
+          <span>D</span>
+        </div>
+
+        <div
+          class="mapa__rejilla"
+          id="mapa-rejilla"
+          role="grid"
+          aria-label="Mapa de calor"
+          aria-describedby="mapa-resumen"
+        ></div>
+      </div>
+
+      <p class="mapa__detalle" id="mapa-detalle">
+        Pasa el puntero, toca o enfoca un día para ver su detalle.
+      </p>
+
+      <ul class="mapa__leyenda" aria-label="Leyenda del mapa de calor">
+        <li class="mapa__leyenda-item">
+          <span class="mapa__muestra mapa__muestra--vacia" aria-hidden="true"></span>
+          Sin sesión
+        </li>
+        <li class="mapa__leyenda-item">
+          <span class="mapa__muestra mapa__muestra--n1" aria-hidden="true"></span>
+          Menos de 30 min
+        </li>
+        <li class="mapa__leyenda-item">
+          <span class="mapa__muestra mapa__muestra--n2" aria-hidden="true"></span>
+          De 30 a menos de 60 min
+        </li>
+        <li class="mapa__leyenda-item">
+          <span class="mapa__muestra mapa__muestra--n3" aria-hidden="true"></span>
+          De 60 a menos de 120 min
+        </li>
+        <li class="mapa__leyenda-item">
+          <span class="mapa__muestra mapa__muestra--n4" aria-hidden="true"></span>
+          120 min o más
+        </li>
+        <li class="mapa__leyenda-item">
+          <span class="mapa__muestra mapa__muestra--futuro" aria-hidden="true"></span>
+          Día futuro
+        </li>
+      </ul>
+    </section>
+
     <section class="tarjeta" aria-labelledby="titulo-formulario">
       <h2 id="titulo-formulario">Nueva sesión</h2>
 

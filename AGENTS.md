@@ -38,4 +38,9 @@ Web estática para registrar sesiones de estudio y calcular la racha. Proyecto d
 - Si algo se convierte en una regla permanente, propón moverlo a `AGENTS.md` en lugar de dejarlo en la memoria.
 - No guardes nunca datos sensibles (claves, tokens, datos personales).
 
+## Comandos
+- Tests: `node --test`
+## Reglas
+- Lee `docs/constitution.md` y la spec activa (`specs/NNN-*/`) antes de tocar código.
+
 Al terminar, resume qué cambiaste y cualquier decisión que el usuario deba revisar.

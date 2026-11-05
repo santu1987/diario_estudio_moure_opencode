@@ -350,6 +350,251 @@ body {
   font-style: italic;
 }
 
+/* ---------- Mapa de calor ---------- */
+
+.mapa {
+  --celda: 24px;
+  --hueco: 6px;
+  --n1: #c3d2dc;
+  --n2: #8aa7ba;
+  --n3: #557b93;
+  --n4: #1b2a3a;
+  position: relative;
+  margin-top: 2.25rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--linea);
+}
+
+.mapa h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.mapa__resumen {
+  margin: 0.25rem 0 0;
+  color: var(--tinta-suave);
+  font-size: 0.85rem;
+}
+
+.mapa__vacio {
+  margin: 0.6rem 0 0;
+  color: var(--tinta-suave);
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  font-style: italic;
+}
+
+.mapa__marco {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+    ". meses"
+    "dias rejilla";
+  column-gap: 0.5rem;
+  row-gap: 0.25rem;
+  justify-content: start;
+  width: max-content;
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+.mapa__meses {
+  grid-area: meses;
+  display: grid;
+  grid-template-columns: repeat(12, var(--celda));
+  column-gap: var(--hueco);
+  align-items: end;
+  color: var(--tinta-suave);
+  font-size: 0.66rem;
+  line-height: 1;
+}
+
+.mapa__mes {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mapa__dias {
+  grid-area: dias;
+  display: grid;
+  grid-template-rows: repeat(7, var(--celda));
+  row-gap: var(--hueco);
+  align-items: center;
+  color: var(--tinta-suave);
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1;
+  text-align: right;
+}
+
+.mapa__rejilla {
+  grid-area: rejilla;
+  display: grid;
+  row-gap: var(--hueco);
+}
+
+.mapa__fila {
+  display: grid;
+  grid-template-columns: repeat(12, var(--celda));
+  column-gap: var(--hueco);
+}
+
+.mapa__celda {
+  width: var(--celda);
+  height: var(--celda);
+  padding: 0;
+  border: 1px solid var(--borde-campo);
+  border-radius: 2px;
+  background: #ffffff;
+  color: var(--tinta);
+  font: inherit;
+  line-height: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.mapa__celda:hover {
+  border-color: var(--tinta);
+}
+
+.mapa__celda--vacia {
+  background: #ffffff;
+}
+
+.mapa__celda--n1 {
+  background: var(--n1);
+  border-color: #a8bcc9;
+}
+
+.mapa__celda--n2 {
+  background: var(--n2);
+  border-color: #7797ab;
+}
+
+.mapa__celda--n3 {
+  background: var(--n3);
+  border-color: #466b82;
+}
+
+.mapa__celda--n4 {
+  background: var(--n4);
+  border-color: var(--n4);
+}
+
+.mapa__celda--futuro {
+  background-color: var(--papel);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(27, 42, 58, 0.16) 0,
+    rgba(27, 42, 58, 0.16) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  border-color: var(--borde-campo);
+}
+
+/* Punto interior: hoy se distingue sin depender solo del nivel. */
+.mapa__celda--hoy::after {
+  content: "";
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px var(--tinta);
+}
+
+.mapa__celda:focus-visible {
+  outline: 2px solid var(--papel);
+  outline-offset: 0;
+  box-shadow: 0 0 0 3px var(--tinta);
+  z-index: 2;
+}
+
+.mapa__detalle {
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
+  margin: 1rem 0 0;
+  padding: 0.55rem 0.75rem;
+  border-left: 3px solid var(--resaltador);
+  background: rgba(255, 215, 94, 0.14);
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.mapa__leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--tinta-suave);
+  font-size: 0.78rem;
+}
+
+.mapa__leyenda-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.mapa__muestra {
+  flex-shrink: 0;
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 1px solid var(--borde-campo);
+  border-radius: 2px;
+  background: #ffffff;
+}
+
+.mapa__muestra--n1 {
+  background: var(--n1);
+}
+
+.mapa__muestra--n2 {
+  background: var(--n2);
+}
+
+.mapa__muestra--n3 {
+  background: var(--n3);
+}
+
+.mapa__muestra--n4 {
+  background: var(--n4);
+}
+
+.mapa__muestra--futuro {
+  background-color: var(--papel);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(27, 42, 58, 0.16) 0,
+    rgba(27, 42, 58, 0.16) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  border-color: var(--borde-campo);
+}
+
+@media (forced-colors: active) {
+  .mapa__celda,
+  .mapa__muestra {
+    forced-color-adjust: none;
+    border-color: CanvasText;
+  }
+
+  .mapa__celda:focus-visible {
+    outline: 2px solid CanvasText;
+    box-shadow: none;
+  }
+}
+
 @media (max-width: 560px) {
   body {
     padding: 1rem 0.5rem;
@@ -392,6 +637,33 @@ body {
 
   .sesion {
     align-items: flex-start;
+  }
+
+  .mapa {
+    --celda: 18px;
+    --hueco: 6px;
+  }
+
+  .mapa__meses {
+    font-size: 0.6rem;
+  }
+
+  .mapa__dias {
+    font-size: 0.62rem;
+  }
+}
+
+@media (max-width: 370px) {
+  .mapa {
+    width: calc(100% + 3.25rem);
+    margin-left: -2.25rem;
+    margin-right: -1rem;
+    background: var(--papel);
+    z-index: 1;
+  }
+
+  .mapa__marco {
+    margin-inline: auto;
   }
 }
 
